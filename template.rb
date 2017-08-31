@@ -99,6 +99,12 @@ def add_administrate
     "announcement_type: Field::Select.with_options(collection: Announcement::TYPES)"
 end
 
+def add_stripe_keys
+  insert_into_file "config/secrets.yml",
+    "  stripe_api_key: <%= ENV['STRIPE_API_KEY'] %>\n  stripe_public_key: <%= ENV['STRIPE_PUBLIC_KEY'] %>\n",
+    after: "development:\n"
+end
+
 # Main setup
 add_gems
 
@@ -109,6 +115,7 @@ after_bundle do
   add_foreman
   add_webpack
   add_announcements
+  add_stripe_keys
 
   # Migrate
   rails_command "db:create"
