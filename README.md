@@ -28,6 +28,10 @@ You'll need the following installed to run the template successfully:
 
 #### Creating a new app
 
+The Jumpstart expects that you have a Postgres database available on localhost, with the default
+username/password for Postgres available (postgres:nil).  If you don't have this, then the script
+will fail at the db:create step.
+
 ```bash
 rails new myapp -d postgresql -m https://raw.githubusercontent.com/excid3/jumpstart/master/template.rb
 ```
