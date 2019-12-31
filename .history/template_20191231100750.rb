@@ -38,8 +38,12 @@ def rails_6?
 end
 
 def add_gems
+  gem_group :development, :test do
+    gem 'factory_bot_rails'
+    gem 'rspec-rails', '~> 4.0'
+  end
   gem "slim-rails", '>= 3.2.0' # enable slim templates 
-  gem 'administrate'# , github: "excid3/administrate", branch: 'jumpstart'
+  gem 'administrate', github: "excid3/administrate", branch: 'jumpstart'
   gem 'bootstrap', '~> 4.3', '>= 4.3.1'
   gem 'devise', '~> 4.7', '>= 4.7.0'
   gem 'devise-bootstrapped', github: 'excid3/devise-bootstrapped', branch: 'bootstrap4'
@@ -257,6 +261,7 @@ after_bundle do
   stop_spring
   add_users
   add_webpack
+  generate "rspec:install"
   add_javascript
   add_announcements
   add_notifications
